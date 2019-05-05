@@ -28,6 +28,26 @@ pip install -r requirements.txt
 ```
 python suprematerior.py https://www.instagram.com/p/BtON034lPhu/
 ```
+
+### Пример выдачи скрипта
+
+```
+2019-05-05 21:09:43,625 - INFO - Instabot Started
+2019-05-05 21:09:52,499 - INFO - Logged-in successfully as 'Suprematerior'!
+Getting followers of 1828755772: 12812it [00:25, 500.23its]
+____ Победившие пользователи: 8 чел. ____
+varvaragiheeva
+_evgenia_ponomareva_2001_
+its1kh
+princess_namaste
+ianarotkina4063
+muraveinikova__i
+bonbon_katrin
+skromnyashka24
+2019-05-05 21:10:42,662 - INFO - Bot stopped. Worked: 19 days, 11:36:51.581734
+2019-05-05 21:10:42,662 - INFO - Total requests: 3802
+```
+
 ### Цель проекта
 
 Код написан в образовательных целях на онлайн-курсе для веб-разработчиков [dvmn.org](https://dvmn.org/).

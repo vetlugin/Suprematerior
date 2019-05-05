@@ -42,6 +42,7 @@ def main():
 
     action_users = list(set(list_of_users))
 
+    print(f'____ Победившие пользователи: {len(action_users)} чел. ____')
     for user in action_users:
         print (user[1])
 
