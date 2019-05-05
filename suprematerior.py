@@ -1,36 +1,32 @@
-from instabot import Bot
+import os
 import re
-import pprint
+import argparse
+from instabot import Bot
+from dotenv import load_dotenv
 
+load_dotenv()
 
 def get_users_from_comment(comment):
-    result = re.findall(r'@([A-Za-z0-9_]+)', comment)
-
-#        if not result:
-#            return None
-#
-    return result
-
-
-def is_user_exist (username):
-    bot = Bot()
-    bot.login(username="Suprematerior", password="Vspleskroot44")
-
-    try:
-        user_id = bot.get_user_id_from_username(username)
-    except JSONDecodeError:
-        return False
-    return True
+    '''
+    Get username from comment.
+    '''
+    return re.findall(r'@([A-Za-z0-9_]+)', comment)
 
 
 def main():
-    bot = Bot()
-    bot.login(username="Suprematerior", password="Vspleskroot44")
-    user_id = bot.get_user_id_from_username("beautybar.rus")
+    parser = argparse.ArgumentParser(description='Script can spot the winner of competition.')
+    parser.add_argument('name', help='URL of instagram post for finding the winner of competition.')
+    args = parser.parse_args()
 
-    id_media = bot.get_media_id_from_link("https://www.instagram.com/p/BtON034lPhu/")
-    #id_media = bot.get_media_id_from_link("https://www.instagram.com/p/Bwu6M2pgRuZ/")
-    #id_media = bot.get_media_id_from_link("https://www.instagram.com/p/BvMQ7rSAhK0/")
+    bot = Bot()
+    username = os.getenv("USERNAME")
+    password = os.getenv("PASSWORD")
+    bot.login(username=username, password=password)
+
+    instagram_post_url = args.name
+    id_media = bot.get_media_id_from_link(f'{instagram_post_url}')
+
+    user_id = bot.get_user_id_from_username("beautybar.rus")
 
     all_comments = bot.get_media_comments_all(id_media)
 
@@ -44,16 +40,10 @@ def main():
         and list_of_followers.count(str(comment['user_id'])):
             list_of_users.append((comment['user_id'], comment['user']['username']))
 
-    #print(f'list_of_user = {len(list_of_users)}')
-    #print(f'list_of_likers = {len(list_of_likers)}')
-    #print(f'list_of_followers = {len(list_of_followers)}')
-    #print(f'action_users = {len(list(set(list_of_users)))}')
-
     action_users = list(set(list_of_users))
 
     for user in action_users:
         print (user[1])
-    #pprint.pprint()
 
 
 if __name__ == '__main__':
