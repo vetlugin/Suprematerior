@@ -1,3 +1,10 @@
+# Pyre type checker
+.pyre/
+Suprematerior.checkpoint
+*.txt
+
+!requirements.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -109,8 +116,3 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
-
-# Pyre type checker
-.pyre/
-*.txt
-Suprematerior.checkpoint
